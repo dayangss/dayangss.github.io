@@ -1,0 +1,1177 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dayang_Shu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="学习关于Git的基本理论知识和一些常见的操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git学习">
+<meta property="og:url" content="http://example.com/2023/04/25/Git%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="大洋">
+<meta property="og:description" content="学习关于Git的基本理论知识和一些常见的操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/_posts_imge/Git%E5%AD%A6%E4%B9%A0/git.jpg">
+<meta property="article:published_time" content="2023-04-25T08:34:52.000Z">
+<meta property="article:modified_time" content="2023-05-06T15:37:55.012Z">
+<meta property="article:author" content="Dayang_Shu">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/_posts_imge/Git%E5%AD%A6%E4%B9%A0/git.jpg">
+  
+  
+  
+  <title>Git学习 - 大洋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"31iZyE7W4HMHkS6NqSCM2uMi-gzGzoHsz","app_key":"GRuHh4ifTQM7sMto8yAyIvzw","server_url":"https://31izye7w.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>大洋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/theme_imge/%E6%97%A5%E6%9C%AC.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Git学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-25 16:34" pubdate>
+          2023年4月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          23k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          196 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Git学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>学习关于Git的基本理论知识和一些常见的操作</p>
+<span id="more"></span>
+
+<h1 id="Git-简介"><a href="#Git-简介" class="headerlink" title="Git 简介"></a>Git 简介</h1><p><strong>Git是分布式版本控制系统</strong></p>
+<h2 id="集中式Vs分布式"><a href="#集中式Vs分布式" class="headerlink" title="集中式Vs分布式"></a>集中式Vs分布式</h2><p>CVS和SVN是集中式版本控制系统，Git是分布式版本控制系统</p>
+<p><strong>集中式版本控制系统</strong>中版本库存放在中央服务器中，在工作时，先从中央服务器获得最新的版本，然后开始工作，工作完成后，将自己的内容发送至中央服务器进行更新。缺点：必须得联网才能工作</p>
+<p><strong>分布式版本控制系统</strong>中没有“中央服务器”，每个人的电脑相当于一个完整的版本库，工作时不需要联网。在进行多人协同工作时，若A更改了文件a，B也更改了文件a，只需将更改推送给对方就能看到对方的修改了。</p>
+<h2 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h2><h3 id="Linux上安装"><a href="#Linux上安装" class="headerlink" title="Linux上安装"></a>Linux上安装</h3><p>首先，输入<code>git</code>，看看系统有没有安装Git：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git</span><br>The program &#x27;git&#x27; is currently not installed. You can install it by typing:<br>sudo apt-get install git<br></code></pre></td></tr></table></figure>
+
+<p>像上面的命令，有很多Linux会友好地告诉你Git没有安装，还会告诉你如何安装Git。</p>
+<p>如果你碰巧用Debian或Ubuntu Linux，通过一条<code>sudo apt-get install git</code>就可以直接完成Git的安装，非常简单。</p>
+<p>老一点的Debian或Ubuntu Linux，要把命令改为<code>sudo apt-get install git-core</code>，因为以前有个软件也叫GIT（GNU Interactive Tools），结果Git就只能叫<code>git-core</code>了。由于Git名气实在太大，后来就把GNU Interactive Tools改成<code>gnuit</code>，<code>git-core</code>正式改为<code>git</code>。</p>
+<h3 id="Windows上安装Git"><a href="#Windows上安装Git" class="headerlink" title="Windows上安装Git"></a>Windows上安装Git</h3><p>直接在官网上安装</p>
+<p>安装完成后，还需要最后一步设置，在命令行输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global user.name <span class="hljs-string">&quot;Your Name&quot;</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git config --global user.email <span class="hljs-string">&quot;email@example.com&quot;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>因为Git是分布式版本控制系统，所以，每个机器都必须自报家门：你的名字和Email地址。你也许会担心，如果有人故意冒充别人怎么办？这个不必担心，首先我们相信大家都是善良无知的群众，其次，真的有冒充的也是有办法可查的。</p>
+<p>注意<code>git config</code>命令的<code>--global</code>参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。</p>
+<h1 id="Git本地基本操作"><a href="#Git本地基本操作" class="headerlink" title="Git本地基本操作"></a>Git本地基本操作</h1><h2 id="创建版本库"><a href="#创建版本库" class="headerlink" title="创建版本库"></a>创建版本库</h2><p>版本库又名仓库，英文名：<strong>repository</strong>,理解为目录，里面的所有文件被Git管理，每个文件的修改，删除，Git都能进行追踪历史，或者将其某个时刻进行“还原”</p>
+<p>1.在文件夹中打开git bash窗口，通过<code>git init</code>命令把这个目录变成Git可以管理的仓库，在此文件夹下面有一个以.git的文件夹，这个是Git来跟踪管理版本库的。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git init</span><br>Initialized empty Git repository in /Users/michael/learngit/.git/<br></code></pre></td></tr></table></figure>
+
+<p>明确一点：所以的版本控制系统只能跟踪文本文件的改动，而图片，视频这些二进制文件的改动，git无法追踪</p>
+<p>2.在版本库的目录下<strong>创建</strong>一个文本文件<code>readme.txt</code>,内容如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">Git is a version control system.<br>Git is free software.<br></code></pre></td></tr></table></figure>
+
+<p>3.用命令<code>git add</code>告诉Git，把文件<strong>添加</strong>到仓库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span><br></code></pre></td></tr></table></figure>
+
+<p>4,用命令<code>git commot</code>告诉Git,把文件<strong>提交</strong>到仓库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;wrote a readme file&quot;</span>`</span><br>[master (root-commit) a2c3270] wrote a readme file<br> 1 file changed, 2 insertions(+)<br> create mode 100644 readme.txt<br></code></pre></td></tr></table></figure>
+
+<p>解释：<code>-m</code>后面输入的是本次提交的说明，输入内容记录每次修改，方便找到当前的修改记录（强烈建议要加上）(（若忘记写message时）1.输入小写字母i，此时进入编辑模式，可以输入你想输入的内容2.按下esc键，此时退出编辑模式，输入英文语法下的冒号:再输入wq即可保存退出3.也可以按下esc退出编辑模式之后连续按输入两个大写字母Z退出)</p>
+<p><code>git commit</code>命令执行成功后会告诉你，<code>1 file changed</code>：1个文件被改动（我们新添加的readme.txt文件）；<code>2 insertions</code>：插入了两行内容（readme.txt有两行内容）。可以<code>add</code>多个文件信息（必须在Git仓库上执行）</p>
+<h2 id="版本库状态"><a href="#版本库状态" class="headerlink" title="版本库状态"></a>版本库状态</h2><p>当修改文件内容时</p>
+<p>例如修改readme.txt文件</p>
+<figure class="highlight mercury"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mercury">Git <span class="hljs-keyword">is</span> a distributed version control system.<br>Git <span class="hljs-keyword">is</span> free software.<br></code></pre></td></tr></table></figure>
+
+<p>运行<code>git status</code>命令查看结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch master<br>Changes not staged for commit:<br>  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)<br>  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)<br>        modified:   readme.txt<br></code></pre></td></tr></table></figure>
+
+<p><strong><code>git status</code><strong>命令用于</strong>显示工作目录和暂存区的状态</strong>。使用此命令能看到那些修改被暂存到了, 哪些没有, 哪些文件没有被Git tracked到。从上面信息可以知道readme.txt被修改了，但是还没有提交</p>
+<p>如果要查询改了文件的什么内容则可以使用**<code>git diff</code>**命令进行查看</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">diff --git a/readme.txt b/readme.txt<br>index d8036c1..013b5bc 100644<br>--- a/readme.txt<br>+++ b/readme.txt<br>@@ -1,2 +1,2 @@<br>-Git is a version control system.<br>+Git is a distributed version control system.<br> Git is free software.<br>\ No newline at end of file<br></code></pre></td></tr></table></figure>
+
+<p>知道了对<code>readme.txt</code>作了什么修改后，提交修改和提交新文件是一样的两步，第一步是<code>git add</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span><br></code></pre></td></tr></table></figure>
+
+<p>在执行第二步<code>git commit</code>之前，我们再运行<code>git status</code>看看当前仓库的状态：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch master<br>Changes to be committed:<br>  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)<br><br>	modified:   readme.txt<br></code></pre></td></tr></table></figure>
+
+<p><code>git status</code>告诉我们，将要被提交的修改包括<code>readme.txt</code>，下一步，就可以放心地提交了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;add distributed&quot;</span></span><br>[master e475afc] add distributed<br> 1 file changed, 1 insertion(+), 1 deletion(-)<br></code></pre></td></tr></table></figure>
+
+<p>提交后，我们再用<code>git status</code>命令看看工作目录与暂存区的当前状态：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch master<br>nothing to commit, working tree clean<br></code></pre></td></tr></table></figure>
+
+<p>本节知识：熟悉指令<code>git status</code>和<code>git diff</code>的应用场景和作用</p>
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h2><p>版本回退顾名思义就是可以将当前版本库的内容回退到任意修改提交的状态</p>
+<p>现在修改readme.txt文本文件的内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">Git is a distributed version control system.<br>Git is free software distributed under the GPL.<br></code></pre></td></tr></table></figure>
+
+<p>提交当前修改的内容至版本库</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git add readme.txt<br><span class="hljs-variable">$ </span>git commit -m <span class="hljs-string">&quot;append GPL&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>注意！！！！一定要加<code> -m &quot;messages&quot;</code>!!!!</p>
+<p>前面共有三个版本提交到Git仓库</p>
+<p>版本1：worte a readme file (写了一个.txt文件提交到Git仓库)</p>
+<p>版本2：add distributed (修改了文本文件中的第一句话)</p>
+<p>版本3：append GPL （添加了一个单词）</p>
+<p>若要查询这些修改提交的更改内容可以使用命令 ** <code>git log </code> **来查看历史修改提交的内容</p>
+<p>（注意：<code>git log</code>只能记录当前<code>HAED</code>指向版本的之前历史版本）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">log</span></span><br>commit a44b8cdfb42d9762c5070766fef1a193ac7c52b6 (HEAD -&gt; master)<br>Author: 1737923221@qq.com &lt;1737923221@qq.com&gt;<br>Date:   Sun Apr 23 15:50:08 2023 +0800<br><br>    append GPL<br><br>commit dd68ea969d8df6ef9d0213c439652f32d76cd154<br>Author: 1737923221@qq.com &lt;1737923221@qq.com&gt;<br>Date:   Sun Apr 23 15:48:41 2023 +0800<br><br>    add distributed<br><br>commit 1c118c31c5a382a86145c6bcb3a7d9216a1add3b<br>Author: 1737923221@qq.com &lt;1737923221@qq.com&gt;<br>Date:   Sun Apr 23 15:46:03 2023 +0800<br><br>    wrote a readme file<br><br></code></pre></td></tr></table></figure>
+
+<p>从上到下为历史最近提交（按英文输入q退出查询状态）</p>
+<p>若嫌弃输出内容太多 可以加上  <code>--pretty=oneline</code> 参数：</p>
+<p>commit 后面的一行字符串魏commit id（版本号）</p>
+<p>用<code>HEAD</code>来表示当前的版本（相当于理解为一个指针，这个指针指向当前版本），那么要回退一个版本则用<code>HEAD^</code>来表示，一次类推<code>HEAD^^</code>,当然可以使用<code>HEAD~100</code>来表示回退100个版本   </p>
+<p>使用**<code>reset</code>**来执行版本回退</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git reset --hard HEAD^</span><br>HEAD is now at dd68ea9 add distributed<br></code></pre></td></tr></table></figure>
+
+<p>使用**<code>cat file_name</code>**来查看当前文件的内容（注意：cat是实时查看工作区的内容，而并非添加暂存区或者提交到仓库的内容）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cat</span> readme.txt</span><br>Git is a distributed version control system.<br>Git is free software.<br></code></pre></td></tr></table></figure>
+
+<p>用<code>git log</code>查看历史版本修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">log</span></span><br>commit dd68ea969d8df6ef9d0213c439652f32d76cd154 (HEAD -&gt; master)<br>Author: 1737923221@qq.com &lt;1737923221@qq.com&gt;<br>Date:   Sun Apr 23 15:48:41 2023 +0800<br><br>    add distributed<br><br>commit 1c118c31c5a382a86145c6bcb3a7d9216a1add3b<br>Author: 1737923221@qq.com &lt;1737923221@qq.com&gt;<br>Date:   Sun Apr 23 15:46:03 2023 +0800<br><br>    wrote a readme file<br></code></pre></td></tr></table></figure>
+
+<p>这时可以发现退回之前的版本不显示在历史版本库中了，若要前往回退未来版本状态：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git reset --hard a44b8</span><br>HEAD is now at a44b8cd append GPL<br></code></pre></td></tr></table></figure>
+
+<p>知道之前所说的commit id字符串的前五位就可以进入未来的某个版本</p>
+<p><strong>若无法找到未来版本的commit id，则可以使用<code>git reflog</code>命令来记录每一次命令的id</strong></p>
+<h2 id="工作区和暂存区（working-directory-staged"><a href="#工作区和暂存区（working-directory-staged" class="headerlink" title="工作区和暂存区（working_directory/staged)"></a>工作区和暂存区（working_directory/staged)</h2><p>Git与其他版本控制系统有不同之处在于暂存区的概念</p>
+<p>工作区（Working Directory）</p>
+<p>例如在之前的创建版本库过程中新建了一个文件夹，执行<code>git init</code>命令后使这个文件夹的里面的目录区域变为工作区，工作区的隐藏目录<code>.git</code>为版本库，不属于工作区，版本库中有很多东西，其中最重要的是stage（或者叫index）的暂存区，Git为我们自动创建了第一个分支，以及指向<code>master</code>的一个指针<code>HEAD</code></p>
+<p><img src="C:\个人网站项目\blogs\hexo\source_posts\Git学习\workspace.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="C:\个人网站项目\blogs\hexo\source_posts\Git学习\概念.png" srcset="/img/loading.gif" lazyload alt="原理图"></p>
+<p><code>git add</code>命令实际上就是把要提交的所有修改放到暂存区（Stage），然后，执行<code>git commit</code>就可以一次性把暂存区的所有修改提交到分支。</p>
+<p>一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的,就某个文件本身而言，文件的使用和修改分离：<code>add</code>登记过的文件，可以再次修改，而不影响文件的上传和使用。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch master<br>nothing to commit, working tree clean<br></code></pre></td></tr></table></figure>
+
+<h2 id="管理修改"><a href="#管理修改" class="headerlink" title="管理修改"></a>管理修改</h2><p>Git管理的是修改而并非文件本身</p>
+<p>例如在进行流程操作：第一次修改 -&gt; <code>git add</code> -&gt; 第二次修改 -&gt; <code>git commit</code>时</p>
+<p>当用<code>git add</code>命令后，在工作区的第一次修改被放入暂存区，准备提交，但是，在工作区的第二次修改并没有放入暂存区，所以，<code>git commit</code>只负责把暂存区的修改提交了，也就是第一次的修改被提交了，第二次的修改不会被提交。</p>
+<p>提交后，用<code>git diff HEAD -- readme.txt</code>命令可以查看工作区和版本库里面最新版本的区别</p>
+<h2 id="撤销修改"><a href="#撤销修改" class="headerlink" title="撤销修改"></a>撤销修改</h2><p>当在工作区进行文件修改时，想对文件进行撤销处理，此时分两种情况</p>
+<p>1.在工作区修改文件时，没有执行<code>git add</code>操作，即修改内容没在暂存区，则执行<code>git restore &lt;file&gt;</code>命令会调取版本库中的有关内容进行工作区文件的更新。</p>
+<p>2.在工作区修改文件执行<code>git add</code>操作，即修改内容在暂存区，则执行 <code>git restore --staged &lt;file&gt;...</code>命令调取版本库的有关内容进行暂存区文件的更新</p>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><p>当执行了<code>git add &lt;file&gt;</code>操作和<code>git commit</code>操作上传至版本库时，用<code>rm</code>命令删除(删掉的是工作区的文件)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">rm</span> test.txt</span><br></code></pre></td></tr></table></figure>
+
+<p>用<code>git status</code>查看哪些文件被删除，若确实要从版本库中删除该文件，则用<code>git rm &lt;file&gt;</code>删掉（将删除文件的操作提交到暂存区），并且<code>git commit</code>.（将删除文件的操作提交到版本库并更新版本库）如果是误删，则可以使用<code>git restore</code>(实质将暂存区的版本更新到工作区)。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Git管理的文件分为：工作区，版本库，版本库又分为暂存区stage和暂存区分支master(仓库)</p>
+<p>工作区&gt;&gt;&gt;&gt;暂存区&gt;&gt;&gt;&gt;仓库</p>
+<p><code>git add</code>把文件从工作区&gt;&gt;&gt;&gt;暂存区，git commit把文件从暂存区&gt;&gt;&gt;&gt;仓库，</p>
+<p><code>git diff</code>查看工作区和暂存区差异，</p>
+<p><code>git diff --cached</code>查看暂存区和仓库差异，</p>
+<p><code>git diff HEAD </code>查看工作区和仓库的差异，</p>
+<p><code>git add</code>的反向命令<code>git restore</code>，撤销工作区修改，即把暂存区最新版本转移到工作区，</p>
+<p><code>git commit</code>的反向命令<code>git restore --staged &lt;file&gt;...</code>，就是把仓库最新版本转移到暂存区。</p>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><p>git的分布式控制系统在于同一个仓库，可以分配到不同的机器上</p>
+<p>了解github远程代码托管网站，将自己电脑的.ssh/id_rsa.pub复制添加到github网站上，了解：为什么github需要用户的SSH Key呢，因为github支持SSH协议，只有知道了用户的key才能知道提交到github上的文件是用户本人提交的，而不是别人冒充的，当然可以添加不同的key来切换操作环境。</p>
+<h2 id="建立远程仓库"><a href="#建立远程仓库" class="headerlink" title="建立远程仓库"></a>建立远程仓库</h2><p>1.在本地的git管理的目录下运行<code>git bash</code>输入指令<code>git remote add &lt;dirictory_name&gt; git@github.com:dayangss/git_test.git</code></p>
+<p>一般命令格式：<code>git remote add &lt;file_name&gt; git@server-name:path/repo-name.git</code>这里的file_name指的是在用git操作时，对远程仓库名称的别名，方便应用。</p>
+<p>2.在上面一步中本地仓库和远程仓库建立了联系，现在就将本地仓库的内容推送到远程仓库中。使用命令<code>git push -u &lt;dirictory_name&gt; master&gt;</code>,这里实际上是把当前分支<code>master</code>推送到远程的<code>master</code>分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<p>3.从现在开始，只要本地做了提交<code>commit</code>之后，可通过命令<code>git push origin master</code>把本地<code>master</code>分支的最新修改推送到GitHub。</p>
+<h2 id="删除远程库"><a href="#删除远程库" class="headerlink" title="删除远程库"></a>删除远程库</h2><p>则可以使用 <code>git remote rm &lt;dirictory_name&gt;</code>命令,使用前可以使用<code>git remote -v</code>来查看远程库信息，这里删除仅仅是解除本地与远程的绑定关系。</p>
+<h2 id="远程库克隆"><a href="#远程库克隆" class="headerlink" title="远程库克隆"></a>远程库克隆</h2><p>1.在GitHub上创建一个远程仓库</p>
+<p>2.执行命令<code>git clone git@github.com:user_name/repository_name.git</code>克隆一个本地库（在本地的任何一个文件夹下，不需要执行<code>git init</code>操作，自动变为<code>git</code>所管理的仓库）</p>
+<p>还可以用<code>https://github.com/user_name/repository_name.git</code>这样的地址。实际上，Git支持多种协议，默认的<code>git://</code>使用ssh，但也可以使用<code>https</code>等其他协议。</p>
+<p>使用<code>https</code>除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用<code>ssh</code>协议而只能用<code>https</code>。</p>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><h2 id="分支的概念理解"><a href="#分支的概念理解" class="headerlink" title="分支的概念理解"></a>分支的概念理解</h2><p>分支是为了将修改记录的整体流程分叉保存。分叉后的分支不受其他分支的影响，所以在同一个数据库里可以同时进行多个修改。分叉的分支可以合并。为了不受其他开发人员的影响，您可以在主分支上建立自己专用的分支。完成工作后，将自己分支上的修改合并到主分支。因为每一次提交的历史记录都会被保存，所以当发生问题时，定位和修改造成问题的提交就容易多了。</p>
+<p>master分支：在数据库进行最初的提交后, Git会创建一个名为master的分支。因此之后的提交，在切换分支之前都会添加到master分支里。</p>
+<h2 id="创建和合并分支"><a href="#创建和合并分支" class="headerlink" title="创建和合并分支"></a>创建和合并分支</h2><h3 id="原理理解"><a href="#原理理解" class="headerlink" title="原理理解"></a>原理理解</h3><p>版本回退中Git生成的commit时间线就是一个分支，这个分支叫做主分支，即master主分支。<code>HEAD</code>严格来说不是指向提交，而是指向<code>master</code>，<code>master</code>才是指向提交的，所以，<code>HEAD</code>指向的就是当前分支。</p>
+<p>一开始的时候，<code>master</code>分支是一条线，Git用<code>master</code>指向最新的提交，再用<code>HEAD</code>指向<code>master</code>，就能确定当前分支，以及当前分支的提交点：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                  HEAD<br>                    │<br>                    │<br>                    ▼<br>                 master<br>                    │<br>                    │<br>                    ▼<br>┌───┐    ┌───┐    ┌───┐<br>│   │───▶│   │───▶│   │<br>└───┘    └───┘    └───┘<br></code></pre></td></tr></table></figure>
+
+<p>每次提交，<code>master</code>分支都会向前移动一步，这样，随着你不断提交，<code>master</code>分支的线也越来越长。</p>
+<p>当我们创建新的分支，例如<code>dev</code>时，Git新建了一个指针叫<code>dev</code>，指向<code>master</code>相同的提交，再把<code>HEAD</code>指向<code>dev</code>，就表示当前分支在<code>dev</code>上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                 master<br>                    │<br>                    │<br>                    ▼<br>┌───┐    ┌───┐    ┌───┐<br>│   │───▶│   │───▶│   │<br>└───┘    └───┘    └───┘<br>                    ▲<br>                    │<br>                    │<br>                   dev<br>                    ▲<br>                    │<br>                    │<br>                  HEAD<br></code></pre></td></tr></table></figure>
+
+<p>Git创建一个分支很快，因为除了增加一个<code>dev</code>指针，改改<code>HEAD</code>的指向，工作区的文件都没有任何变化！</p>
+<p>不过，从现在开始，对工作区的修改和提交就是针对<code>dev</code>分支了，比如新提交一次后，<code>dev</code>指针往前移动一步，而<code>master</code>指针不变：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                 master<br>                    │<br>                    │<br>                    ▼<br>┌───┐     ┌───┐    ┌───┐    ┌───┐<br>│   │───▶│   │───▶│   │───▶│   │<br>└───┘     └───┘    └───┘    └───┘<br>                             ▲<br>                             │<br>                             │<br>                            dev<br>                             ▲<br>                             │<br>                             │<br>                           HEAD<br></code></pre></td></tr></table></figure>
+
+<p>假如在<code>dev</code>上的工作完成了，就可以把<code>dev</code>合并到<code>master</code>上。直接把<code>master</code>指向<code>dev</code>的当前提交，就完成了合并：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                           HEAD<br>                             │<br>                             │<br>                             ▼<br>                          master<br>                             │<br>                             │<br>                             ▼<br>┌───┐     ┌───┐    ┌───┐    ┌───┐<br>│   │───▶│   │───▶│   │───▶│   │<br>└───┘     └───┘    └───┘    └───┘<br>                             ▲<br>                             │<br>                             │<br>                            dev<br></code></pre></td></tr></table></figure>
+
+<p>所以Git合并分支也很快！就改改指针，工作区内容也不变！</p>
+<p>合并完分支后，甚至可以删除<code>dev</code>分支。删除<code>dev</code>分支就是把<code>dev</code>指针给删掉，删掉后，我们就剩下了一条<code>master</code>分支：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                           HEAD<br>                             │<br>                             │<br>                             ▼<br>                          master<br>                             │<br>                             │<br>                             ▼<br>┌───┐     ┌───┐     ┌───┐    ┌───┐<br>│   │───▶ │   │───▶│   │───▶│   │<br>└───┘     └───┘     └───┘    └───┘<br></code></pre></td></tr></table></figure>
+
+<h3 id="实战操作"><a href="#实战操作" class="headerlink" title="实战操作"></a>实战操作</h3><p>1.创建<code>dev</code>分支，然后切换到<code>dev</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout -b dev</span><br>Switched to a new branch &#x27;dev&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><code>git checkout</code>命令加上<code>-b</code>参数表示创建并切换，相当于两条命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch dev//创建dev 分支</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout dev// 切换到dev分支</span><br>Switched to branch &#x27;dev&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><code>git branch</code>命令查看当前分支，*代表当前使用的分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch</span><br>* dev<br>  master<br></code></pre></td></tr></table></figure>
+
+<p>2.查看分支，在当前的分支上进行修改操作并提交到本地的dev分支上，<code>dev</code>分支上工作完成切换到master分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout master</span><br>Switched to branch &#x27;master&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>如果查看文件的修改的情况会发现没有显示dev分支上文件的修改情况，因为在master分支上，而master分支上的提交点并没有变</p>
+<p><img src="C:\个人网站项目\blogs\hexo\source_posts\Git学习\branch.png" srcset="/img/loading.gif" lazyload alt="branch"></p>
+<p>3.合并分支，把<code>dev</code>分支上的工作成果合并到<code>master</code>分支上，使用<code>git merge</code>操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git merge dev</span><br>Updating 6339a51..f0e6c25<br>Fast-forward<br> readme.txt | 1 +<br> 1 file changed, 1 insertion(+)<br></code></pre></td></tr></table></figure>
+
+<p>上面的<code>Fast-forward</code>信息为合并的”快进模式“，也就是把<code>master</code>指向<code>dev</code>的当前提交，所以合并速度很快。</p>
+<p>4.删除分支</p>
+<p>合并完成后，就可以放心地删除<code>dev</code>分支了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch -d dev</span><br>Deleted branch dev (was b17d20e).<br></code></pre></td></tr></table></figure>
+
+<p>删除后，查看<code>branch</code>，就只剩下<code>master</code>分支了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch</span><br>* master<br></code></pre></td></tr></table></figure>
+
+<p>因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在<code>master</code>分支上工作效果是一样的，但过程更安全。</p>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><p>实际上，切换分支这个动作，用<code>switch</code>更科学。因此，最新版本的Git提供了新的<code>git switch</code>命令来切换分支：</p>
+<p>创建并切换到新的<code>dev</code>分支，可以使用：</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm">$ git <span class="hljs-keyword">switch</span> -<span class="hljs-keyword">c</span> dev<br></code></pre></td></tr></table></figure>
+
+<p>直接切换到已有的<code>master</code>分支，可以使用：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$</span> git <span class="hljs-keyword">switch</span> master<br></code></pre></td></tr></table></figure>
+
+<p>使用新的<code>git switch</code>命令，比<code>git checkout</code>要更容易理解。</p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p>Git鼓励大量使用分支：</p>
+<p>查看分支：<code>git branch</code></p>
+<p>创建分支：<code>git branch &lt;name&gt;</code></p>
+<p>切换分支：<code>git checkout &lt;name&gt;</code>或者<code>git switch &lt;name&gt;</code></p>
+<p>创建+切换分支：<code>git checkout -b &lt;name&gt;</code>或者<code>git switch -c &lt;name&gt;</code></p>
+<p>合并某分支到当前分支：<code>git merge &lt;name&gt;</code></p>
+<p>删除分支：<code>git branch -d &lt;name&gt;</code></p>
+<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>模拟一个冲突</p>
+<p>1.创建一个新的分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git switch -c feature1</span><br>Switched to a new branch &#x27;feature1&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>2.修改修改<code>readme.txt</code>最后一行，改为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Creating a new branch is quick and simple.<br></code></pre></td></tr></table></figure>
+
+<p>在<code>feature1</code>分支上提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;AND simple&quot;</span></span><br>[feature1 14096d0] AND simple<br> 1 file changed, 1 insertion(+), 1 deletion(-)<br></code></pre></td></tr></table></figure>
+
+<p>3.切换到<code>master</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git switch master</span><br>Switched to branch &#x27;master&#x27;<br>Your branch is ahead of &#x27;origin/master&#x27; by 1 commit.<br>  (use &quot;git push&quot; to publish your local commits)<br></code></pre></td></tr></table></figure>
+
+<p>Git还会自动提示我们当前<code>master</code>分支比远程的<code>master</code>分支要超前1个提交。</p>
+<p>在<code>master</code>分支上把<code>readme.txt</code>文件的最后一行改为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Creating a new branch is quick &amp; simple.<br></code></pre></td></tr></table></figure>
+
+<p>提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span> <br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;&amp; simple&quot;</span></span><br>[master 5dc6824] &amp; simple<br> 1 file changed, 1 insertion(+), 1 deletion(-)<br></code></pre></td></tr></table></figure>
+
+<p>现在，<code>master</code>分支和<code>feature1</code>分支各自都分别有新的提交，变成了这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                            HEAD<br>                              │<br>                              │<br>                              ▼<br>                           master<br>                              │<br>                              │<br>                              ▼<br>                            ┌───┐<br>                         ┌─▶│   │<br>┌───┐    ┌───┐    ┌───┐  │  └───┘<br>│   │───▶│   │───▶│   │──┤<br>└───┘    └───┘    └───┘  │  ┌───┐<br>                         └─▶│   │<br>                            └───┘<br>                              ▲<br>                              │<br>                              │<br>                          feature1<br></code></pre></td></tr></table></figure>
+
+<p>这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，我们试试看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git merge feature1</span><br>Auto-merging readme.txt<br>CONFLICT (content): Merge conflict in readme.txt<br>Automatic merge failed; fix conflicts and then commit the result.<br></code></pre></td></tr></table></figure>
+
+<p>果然冲突了！Git告诉我们，<code>readme.txt</code>文件存在冲突，必须手动解决冲突后再提交。<code>git status</code>也可以告诉我们冲突的文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch master<br>Your branch is ahead of &#x27;origin/master&#x27; by 2 commits.<br>  (use &quot;git push&quot; to publish your local commits)<br><br>You have unmerged paths.<br>  (fix conflicts and run &quot;git commit&quot;)<br>  (use &quot;git merge --abort&quot; to abort the merge)<br><br>Unmerged paths:<br>  (use &quot;git add &lt;file&gt;...&quot; to mark resolution)<br><br>	both modified:   readme.txt<br><br>no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)<br></code></pre></td></tr></table></figure>
+
+<p>我们可以直接查看readme.txt的内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">Git is a distributed version control system.<br>Git is free software distributed under the GPL.<br>Git has a mutable index called stage.<br>Git tracks changes of files.<br>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>Creating a new branch is quick &amp; simple.<br>=======<br>Creating a new branch is quick AND simple.<br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">&gt;&gt;&gt;&gt;&gt;&gt; feature1</span><br></code></pre></td></tr></table></figure>
+
+<p>Git用<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>，<code>=======</code>，<code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code>标记出不同分支的内容，我们修改如下后保存：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">Creating a new branch is quick and simple.<br></code></pre></td></tr></table></figure>
+
+<p>再提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span> <br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;conflict fixed&quot;</span></span><br>[master cf810e4] conflict fixed<br></code></pre></td></tr></table></figure>
+
+<p>现在，<code>master</code>分支和<code>feature1</code>分支变成了下图所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ascii">                                     HEAD<br>                                       │<br>                                       │<br>                                       ▼<br>                                    master<br>                                       │<br>                                       │<br>                                       ▼<br>                            ┌───┐    ┌───┐<br>                         ┌─▶│   │───▶│   │<br>┌───┐    ┌───┐    ┌───┐  │  └───┘    └───┘<br>│   │───▶│   │───▶│   │──┤             ▲<br>└───┘    └───┘    └───┘  │  ┌───┐      │<br>                         └─▶│   │──────┘<br>                            └───┘<br>                              ▲<br>                              │<br>                              │<br>                          feature1<br></code></pre></td></tr></table></figure>
+
+<p>用带参数的<code>git log</code>也可以看到分支的合并情况：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">log</span> --graph --pretty=oneline --abbrev-commit</span><br>*   cf810e4 (HEAD -&gt; master) conflict fixed<br>|\  <br>| * 14096d0 (feature1) AND simple<br>* | 5dc6824 &amp; simple<br>|/  <br>* b17d20e branch test<br>* d46f35e (origin/master) remove test.txt<br>* b84166e add test.txt<br>* 519219b git tracks changes<br>* e43a48b understand how stage works<br>* 1094adb append GPL<br>* e475afc add distributed<br>* eaadf4e wrote a readme file<br></code></pre></td></tr></table></figure>
+
+<p>最后，删除<code>feature1</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch -d feature1</span><br>Deleted branch feature1 (was 14096d0).<br></code></pre></td></tr></table></figure>
+
+<p>工作完成。</p>
+<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><h3 id="–no-ff模式模拟"><a href="#–no-ff模式模拟" class="headerlink" title="–no-ff模式模拟"></a>–no-ff模式模拟</h3><p>通常，合并分支时，如果可能，Git会用<code>Fast forward</code>模式，但这种模式下，删除分支后，会丢掉分支信息。</p>
+<p>如果要强制禁用<code>Fast forward</code>模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
+<p>实战一下<code>--no-ff</code>方式的<code>git merge</code>：</p>
+<p>首先，仍然创建并切换<code>dev</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git switch -c dev</span><br>Switched to a new branch &#x27;dev&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>修改readme.txt文件，并提交一个新的commit：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span> <br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;add merge&quot;</span></span><br>[dev f52c633] add merge<br> 1 file changed, 1 insertion(+)<br></code></pre></td></tr></table></figure>
+
+<p>现在，我们切换回<code>master</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git switch master</span><br>Switched to branch &#x27;master&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>准备合并<code>dev</code>分支，请注意<code>--no-ff</code>参数，表示禁用<code>Fast forward</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git merge --no-ff -m <span class="hljs-string">&quot;merge with no-ff&quot;</span> dev</span><br>Merge made by the &#x27;recursive&#x27; strategy.<br> readme.txt | 1 +<br> 1 file changed, 1 insertion(+)<br></code></pre></td></tr></table></figure>
+
+<p>因为本次合并要创建一个新的commit，所以加上<code>-m</code>参数，把commit描述写进去。</p>
+<p>合并后，我们用<code>git log</code>看看分支历史：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">log</span> --graph --pretty=oneline --abbrev-commit</span><br>*   e1e9c68 (HEAD -&gt; master) merge with no-ff<br>|\  <br>| * f52c633 (dev) add merge<br>|/  <br>*   cf810e4 conflict fixed<br>...<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，不使用<code>Fast forward</code>模式，merge后就像这样：</p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919023225142304/0" srcset="/img/loading.gif" lazyload alt="git-no-ff-mode"></p>
+<p>体会：这里的–no–ff 模式其实就是相当于master指针new了一个跟dev指针一样的空间并且放了相同的内容然后指向这个空间。而原来的快速模式，就是简单将master指针指向dev指针指向的内容而已，并没有自己创造空间。</p>
+<h3 id="分支策略"><a href="#分支策略" class="headerlink" title="分支策略"></a>分支策略</h3><p>在实际开发中，我们应该按照几个基本原则进行分支管理：</p>
+<p>首先，<code>master</code>分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；</p>
+<p>那在哪干活呢？干活都在<code>dev</code>分支上，也就是说，<code>dev</code>分支是不稳定的，到某个时候，比如1.0版本发布时，再把<code>dev</code>分支合并到<code>master</code>上，在<code>master</code>分支发布1.0版本；</p>
+<p>你和你的小伙伴们每个人都在<code>dev</code>分支上干活，每个人都有自己的分支，时不时地往<code>dev</code>分支上合并就可以了。</p>
+<p>所以，团队合作的分支看起来就像这样：</p>
+<p><img src="https://www.liaoxuefeng.com/files/attachments/919023260793600/0" srcset="/img/loading.gif" lazyload alt="git-br-policy"></p>
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p>Git分支十分强大，在团队开发中应该充分应用。</p>
+<p>合并分支时，加上<code>--no-ff</code>参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而<code>fast forward</code>合并就看不出来曾经做过合并。</p>
+<h2 id="Bug分支"><a href="#Bug分支" class="headerlink" title="Bug分支"></a>Bug分支</h2><p>软件开发中，bug就像家常便饭一样。有了bug就需要修复，在Git中，由于分支是如此的强大，所以，每个bug都可以通过一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除。</p>
+<p>当你接到一个修复一个代号101的bug的任务时，很自然地，你想创建一个分支<code>issue-101</code>来修复它，但是，等等，当前正在<code>dev</code>上进行的工作还没有提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch dev<br>Changes to be committed:<br>  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)<br><br>	new file:   hello.py<br><br>Changes not staged for commit:<br>  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)<br>  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)<br><br>	modified:   readme.txt<br></code></pre></td></tr></table></figure>
+
+<p>并不是你不想提交，而是工作只进行到一半，还没法提交，预计完成还需1天时间。但是，必须在两个小时内修复该bug，怎么办？</p>
+<h3 id="暂存当前工作区的内容"><a href="#暂存当前工作区的内容" class="headerlink" title="暂存当前工作区的内容"></a>暂存当前工作区的内容</h3><p>Git还提供了一个<code>stash</code>功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git stash</span><br>Saved working directory and index state WIP on dev: f52c633 add merge<br></code></pre></td></tr></table></figure>
+
+<p>现在，用<code>git status</code>查看工作区，就是干净的（除非有没有被Git管理的文件），因此可以放心地创建分支来修复bug。</p>
+<p>首先确定要在哪个分支上修复bug，假定需要在<code>master</code>分支上修复，就从<code>master</code>创建临时分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout master</span><br>Switched to branch &#x27;master&#x27;<br>Your branch is ahead of &#x27;origin/master&#x27; by 6 commits.<br>  (use &quot;git push&quot; to publish your local commits)<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout -b issue-101</span><br>Switched to a new branch &#x27;issue-101&#x27;<br></code></pre></td></tr></table></figure>
+
+<h3 id="修复Bug"><a href="#修复Bug" class="headerlink" title="修复Bug"></a>修复Bug</h3><p>现在修复bug，需要把“Git is free software …”改为“Git is a free software …”，然后提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add readme.txt</span> <br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;fix bug 101&quot;</span></span><br>[issue-101 4c805e2] fix bug 101<br> 1 file changed, 1 insertion(+), 1 deletion(-)<br></code></pre></td></tr></table></figure>
+
+<p>修复完成后，切换到<code>master</code>分支，并完成合并，最后删除<code>issue-101</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git switch master</span><br>Switched to branch &#x27;master&#x27;<br>Your branch is ahead of &#x27;origin/master&#x27; by 6 commits.<br>  (use &quot;git push&quot; to publish your local commits)<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git merge --no-ff -m <span class="hljs-string">&quot;merged bug fix 101&quot;</span> issue-101</span><br>Merge made by the &#x27;recursive&#x27; strategy.<br> readme.txt | 2 +-<br> 1 file changed, 1 insertion(+), 1 deletion(-)<br></code></pre></td></tr></table></figure>
+
+<h3 id="切换原本工作区"><a href="#切换原本工作区" class="headerlink" title="切换原本工作区"></a>切换原本工作区</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git switch dev</span><br>Switched to branch &#x27;dev&#x27;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git status</span><br>On branch dev<br>nothing to commit, working tree clean<br></code></pre></td></tr></table></figure>
+
+<p>工作区是干净的，刚才的工作现场存到哪去了？用<code>git stash list</code>命令看看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git stash list</span><br>stash@&#123;0&#125;: WIP on dev: f52c633 add merge<br></code></pre></td></tr></table></figure>
+
+<p>工作现场还在，Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：</p>
+<p>一是用<code>git stash apply</code>恢复，但是恢复后，stash内容并不删除，你需要用<code>git stash drop</code>来删除；</p>
+<p>另一种方式是用<code>git stash pop</code>，恢复的同时把stash内容也删了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git stash pop</span><br>On branch dev<br>Changes to be committed:<br>  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)<br><br>	new file:   hello.py<br><br>Changes not staged for commit:<br>  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)<br>  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)<br><br>	modified:   readme.txt<br><br>Dropped refs/stash@&#123;0&#125; (5d677e2ee266f39ea296182fb2354265b91b3b2a)<br></code></pre></td></tr></table></figure>
+
+<p>再用<code>git stash list</code>查看，就看不到任何stash内容了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git stash list</span><br></code></pre></td></tr></table></figure>
+
+<p>你可以多次stash，恢复的时候，先用<code>git stash list</code>查看，然后恢复指定的stash，用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git stash apply stash@&#123;0&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>在master分支上修复了bug后，我们要想一想，dev分支是早期从master分支分出来的，所以，这个bug其实在当前dev分支上也存在。</p>
+<p>那怎么在dev分支上修复同样的bug？重复操作一次，提交不就行了？</p>
+<p>有木有更简单的方法？</p>
+<p>有！</p>
+<p>同样的bug，要在dev上修复，我们只需要把<code>4c805e2 fix bug 101</code>这个提交所做的修改“复制”到dev分支。注意：我们只想复制<code>4c805e2 fix bug 101</code>这个提交所做的修改，并不是把整个master分支merge过来。</p>
+<p>为了方便操作，Git专门提供了一个<code>cherry-pick</code>命令，让我们能复制一个特定的提交到当前分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch</span><br>* dev<br>  master<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git cherry-pick 4c805e2</span><br>[master 1d4b803] fix bug 101<br> 1 file changed, 1 insertion(+), 1 deletion(-)<br></code></pre></td></tr></table></figure>
+
+<p>Git自动给dev分支做了一次提交，注意这次提交的commit是<code>1d4b803</code>，它并不同于master的<code>4c805e2</code>，因为这两个commit只是改动相同，但确实是两个不同的commit。用<code>git cherry-pick</code>，我们就不需要在dev分支上手动再把修bug的过程重复一遍。</p>
+<p>有些聪明的童鞋会想了，既然可以在master分支上修复bug后，在dev分支上可以“重放”这个修复过程，那么直接在dev分支上修复bug，然后在master分支上“重放”行不行？当然可以，不过你仍然需要<code>git stash</code>命令保存现场，才能从dev分支切换到master分支。</p>
+<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><p>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；</p>
+<p>当手头工作没有完成时，先把工作现场<code>git stash</code>一下，然后去修复bug，修复后，再<code>git stash pop</code>，回到工作现场；</p>
+<p>在master分支上修复的bug，想要合并到当前dev分支，可以用<code>git cherry-pick &lt;commit&gt;</code>命令，把bug提交的修改“复制”到当前分支，避免重复劳动。</p>
+<h2 id="Feature分支"><a href="#Feature分支" class="headerlink" title="Feature分支"></a>Feature分支</h2><p>与Bug分支本质处理一样</p>
+<p>若不需要加入当前写好的<code>Feature</code>分支，使用 <code>git branch -D feature</code>命令删除该分支。</p>
+<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p>当你从远程仓库克隆时，实际上Git自动把本地的<code>master</code>分支和远程的<code>master</code>分支对应起来了，并且，远程仓库的默认名称是<code>origin</code>。</p>
+<p>要查看远程库的信息，用<code>git remote</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git remote</span><br>origin<br></code></pre></td></tr></table></figure>
+
+<p>或者，用<code>git remote -v</code>显示更详细的信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git remote -v</span><br>origin  git@github.com:dayangss/test_git (fetch)<br>origin  git@github.com:dayangss/test_git (push)<br></code></pre></td></tr></table></figure>
+
+<p>上面显示了可以抓取和推送的<code>origin</code>的地址。如果没有推送权限，就看不到push的地址。</p>
+<h3 id="推送分支"><a href="#推送分支" class="headerlink" title="推送分支"></a>推送分支</h3><p>推送分支，就是把该分支上的所有本地提交推送到远程库。推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin master</span><br></code></pre></td></tr></table></figure>
+
+<p>如果要推送其他分支，比如<code>dev</code>，就改成：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin dev</span><br></code></pre></td></tr></table></figure>
+
+<p>但是，并不是一定要把本地分支往远程推送，那么，哪些分支需要推送，哪些不需要呢？</p>
+<ul>
+<li><code>master</code>分支是主分支，因此要时刻与远程同步；</li>
+<li><code>dev</code>分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；</li>
+<li>bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；</li>
+<li>feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。</li>
+</ul>
+<h3 id="抓取分支"><a href="#抓取分支" class="headerlink" title="抓取分支"></a>抓取分支</h3><p>多人协作时，大家都会往<code>master</code>和<code>dev</code>分支上推送各自的修改。</p>
+<p>现在，模拟一个你的小伙伴，可以在另一台电脑（注意要把SSH Key添加到GitHub）或者同一台电脑的另一个目录下克隆：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">clone</span> git@github.com:michaelliao/learngit.git</span><br>Cloning into &#x27;learngit&#x27;...<br>remote: Counting objects: 40, done.<br>remote: Compressing objects: 100% (21/21), done.<br>remote: Total 40 (delta 14), reused 40 (delta 14), pack-reused 0<br>Receiving objects: 100% (40/40), done.<br>Resolving deltas: 100% (14/14), done.<br></code></pre></td></tr></table></figure>
+
+<p>当你的小伙伴从远程库clone时，默认情况下，你的小伙伴只能看到本地的<code>master</code>分支。可以用<code>git branch</code>命令看看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch</span><br>* master<br></code></pre></td></tr></table></figure>
+
+<p>现在，你的小伙伴要在<code>dev</code>分支上开发，就必须创建远程<code>origin</code>的<code>dev</code>分支到本地，并与指定的远程分支关联起来，于是他用这个命令创建本地<code>dev</code>分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout -b dev origin/dev//远程分支的名字</span><br></code></pre></td></tr></table></figure>
+
+<p>现在，他就可以在<code>dev</code>上继续修改，然后，时不时地把<code>dev</code>分支<code>push</code>到远程：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add env.txt</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;add env&quot;</span></span><br>[dev 7a5e5dd] add env<br> 1 file changed, 1 insertion(+)<br> create mode 100644 env.txt<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin dev</span><br>Counting objects: 3, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (2/2), done.<br>Writing objects: 100% (3/3), 308 bytes | 308.00 KiB/s, done.<br>Total 3 (delta 0), reused 0 (delta 0)<br>To github.com:michaelliao/learngit.git<br>   f52c633..7a5e5dd  dev -&gt; dev<br></code></pre></td></tr></table></figure>
+
+<h3 id="推送相同分支中有冲突"><a href="#推送相同分支中有冲突" class="headerlink" title="推送相同分支中有冲突"></a>推送相同分支中有冲突</h3><p>你的小伙伴已经向<code>origin/dev</code>分支推送了他的提交，而碰巧你也对同样的文件作了修改，并试图推送：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">cat</span> env.txt</span><br>env<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git add env.txt</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;add new env&quot;</span></span><br>[dev 7bd91f1] add new env<br> 1 file changed, 1 insertion(+)<br> create mode 100644 env.txt<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin dev</span><br>To github.com:michaelliao/learngit.git<br> ! [rejected]        dev -&gt; dev (non-fast-forward)<br>error: failed to push some refs to &#x27;git@github.com:michaelliao/learngit.git&#x27;<br>hint: Updates were rejected because the tip of your current branch is behind<br>hint: its remote counterpart. Integrate the remote changes (e.g.<br>hint: &#x27;git pull ...&#x27;) before pushing again.<br>hint: See the &#x27;Note about fast-forwards&#x27; in &#x27;git push --help&#x27; for details.<br></code></pre></td></tr></table></figure>
+
+<p>推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，解决办法也很简单，Git已经提示我们，先用<code>git pull</code>把最新的提交从<code>origin/dev</code>抓下来，然后，在本地合并，解决冲突，再推送：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git pull</span><br>There is no tracking information for the current branch.<br>Please specify which branch you want to merge with.<br>See git-pull(1) for details.<br><br>    git pull &lt;remote&gt; &lt;branch&gt;<br><br>If you wish to set tracking information for this branch you can do so with:<br><br>    git branch --set-upstream-to=origin/&lt;branch&gt; dev<br></code></pre></td></tr></table></figure>
+
+<p><code>git pull</code>也失败了，原因是没有指定本地<code>dev</code>分支与远程<code>origin/dev</code>分支的链接，根据提示，设置<code>dev</code>和<code>origin/dev</code>的链接：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch --set-upstream-to=origin/dev dev</span><br>Branch &#x27;dev&#x27; set up to track remote branch &#x27;dev&#x27; from &#x27;origin&#x27;.<br></code></pre></td></tr></table></figure>
+
+<p>再pull：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git pull</span><br>Auto-merging env.txt<br>CONFLICT (add/add): Merge conflict in env.txt<br>Automatic merge failed; fix conflicts and then commit the result.<br></code></pre></td></tr></table></figure>
+
+<p>这回<code>git pull</code>成功，但是合并有冲突，需要手动解决，解决的方法和分支管理中的<a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/896043488029600/900004111093344">解决冲突</a>完全一样。解决后，提交，再push：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git commit -m <span class="hljs-string">&quot;fix env conflict&quot;</span></span><br>[dev 57c53ab] fix env conflict<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin dev</span><br>Counting objects: 6, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (4/4), done.<br>Writing objects: 100% (6/6), 621 bytes | 621.00 KiB/s, done.<br>Total 6 (delta 0), reused 0 (delta 0)<br>To github.com:michaelliao/learngit.git<br>   7a5e5dd..57c53ab  dev -&gt; dev<br></code></pre></td></tr></table></figure>
+
+<p>因此，多人协作的工作模式通常是这样：</p>
+<ol>
+<li>首先，可以试图用<code>git push origin &lt;branch-name&gt;</code>推送自己的修改；</li>
+<li>如果推送失败，则因为远程分支比你的本地更新，需要先用<code>git pull</code>试图合并；</li>
+<li>如果合并有冲突，则解决冲突，并在本地提交；</li>
+<li>没有冲突或者解决掉冲突后，再用<code>git push origin &lt;branch-name&gt;</code>推送就能成功！</li>
+</ol>
+<p>如果<code>git pull</code>提示<code>no tracking information</code>，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。</p>
+<p>这就是多人协作的工作模式，一旦熟悉了，就非常简单。</p>
+<h3 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h3><ul>
+<li><p>查看远程库信息，使用<code>git remote -v</code>；</p>
+</li>
+<li><p>本地新建的分支如果不推送到远程，对其他人就是不可见的；</p>
+</li>
+<li><p>从本地推送分支，使用<code>git push origin branch-name</code>，如果推送失败，先用<code>git pull</code>抓取远程的新提交；</p>
+</li>
+<li><p>在本地创建和远程分支对应的分支，使用<code>git checkout -b branch-name origin/branch-name</code>，本地和远程分支的名称最好一致；</p>
+</li>
+<li><p>建立本地分支和远程分支的关联，使用<code>git branch --set-upstream branch-name origin/branch-name</code>；</p>
+</li>
+<li><p>从远程抓取分支，使用<code>git pull</code>，如果有冲突，要先处理冲突。</p>
+</li>
+</ul>
+<h1 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h1><h2 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h2><p>在Git中打标签非常简单，首先，切换到需要打标签的分支上：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git branch</span><br>* dev<br>  master<br><span class="hljs-meta prompt_">$ </span><span class="language-bash">git checkout master</span><br>Switched to branch &#x27;master&#x27;<br></code></pre></td></tr></table></figure>
+
+<p>然后，敲命令<code>git tag &lt;name&gt;</code>就可以打一个新标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag v1.0</span><br></code></pre></td></tr></table></figure>
+
+<p>可以用命令<code>git tag</code>查看所有标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag</span><br>v1.0<br></code></pre></td></tr></table></figure>
+
+<p>默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>方法是找到历史提交的commit id，然后打上就可以了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git <span class="hljs-built_in">log</span> --pretty=oneline --abbrev-commit</span><br>12a631b (HEAD -&gt; master, tag: v1.0, origin/master) merged bug fix 101<br>4c805e2 fix bug 101<br>e1e9c68 merge with no-ff<br>f52c633 add merge<br>cf810e4 conflict fixed<br>5dc6824 &amp; simple<br>14096d0 AND simple<br>b17d20e branch test<br>d46f35e remove test.txt<br>b84166e add test.txt<br>519219b git tracks changes<br>e43a48b understand how stage works<br>1094adb append GPL<br>e475afc add distributed<br>eaadf4e wrote a readme file<br></code></pre></td></tr></table></figure>
+
+<p>比方说要对<code>add merge</code>这次提交打标签，它对应的commit id是<code>f52c633</code>，敲入命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag v0.9 f52c633</span><br></code></pre></td></tr></table></figure>
+
+<p>再用命令<code>git tag</code>查看标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag</span><br>v0.9<br>v1.0<br></code></pre></td></tr></table></figure>
+
+<p>注意，标签不是按时间顺序列出，而是按字母排序的。可以用<code>git show &lt;tagname&gt;</code>查看标签信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git show v0.9</span><br>commit f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0.9)<br>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;<br>Date:   Fri May 18 21:56:54 2018 +0800<br><br>    add merge<br><br>diff --git a/readme.txt b/readme.txt<br>...<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，<code>v0.9</code>确实打在<code>add merge</code>这次提交上。</p>
+<p>还可以创建带有说明的标签，用<code>-a</code>指定标签名，<code>-m</code>指定说明文字：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag -a v0.1 -m <span class="hljs-string">&quot;version 0.1 released&quot;</span> 1094adb</span><br></code></pre></td></tr></table></figure>
+
+<p>用命令<code>git show &lt;tagname&gt;</code>可以看到说明文字：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git show v0.1</span><br>tag v0.1<br>Tagger: Michael Liao &lt;askxuefeng@gmail.com&gt;<br>Date:   Fri May 18 22:48:43 2018 +0800<br><br>version 0.1 released<br><br>commit 1094adb7b9b3807259d8cb349e7df1d4d6477073 (tag: v0.1)<br>Author: Michael Liao &lt;askxuefeng@gmail.com&gt;<br>Date:   Fri May 18 21:06:15 2018 +0800<br><br>    append GPL<br><br>diff --git a/readme.txt b/readme.txt<br>...<br></code></pre></td></tr></table></figure>
+
+<p> 注意：标签总是和某个commit挂钩。如果这个commit既出现在master分支，又出现在dev分支，那么在这两个分支上都可以看到这个标签。</p>
+<h2 id="操作标签"><a href="#操作标签" class="headerlink" title="操作标签"></a>操作标签</h2><p>如果标签打错了，也可以删除：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag -d v0.1</span><br>Deleted tag &#x27;v0.1&#x27; (was f15b0dd)<br></code></pre></td></tr></table></figure>
+
+<p>因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。</p>
+<p>如果要推送某个标签到远程，使用命令<code>git push origin &lt;tagname&gt;</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin v1.0</span><br>Total 0 (delta 0), reused 0 (delta 0)<br>To github.com:michaelliao/learngit.git<br> * [new tag]         v1.0 -&gt; v1.0<br></code></pre></td></tr></table></figure>
+
+<p>或者，一次性推送全部尚未推送到远程的本地标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin --tags</span><br>Total 0 (delta 0), reused 0 (delta 0)<br>To github.com:michaelliao/learngit.git<br> * [new tag]         v0.9 -&gt; v0.9<br></code></pre></td></tr></table></figure>
+
+<p>如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git tag -d v0.9</span><br>Deleted tag &#x27;v0.9&#x27; (was f52c633)<br></code></pre></td></tr></table></figure>
+
+<p>然后，从远程删除。删除命令也是push，但是格式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">git push origin :refs/tags/v0.9</span><br>To github.com:michaelliao/learngit.git<br> - [deleted]         v0.9<br></code></pre></td></tr></table></figure>
+
+<p>要看看是否真的从远程库删除了标签，可以登陆GitHub查看。</p>
+<h3 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>命令<code>git push origin &lt;tagname&gt;</code>可以推送一个本地标签；</li>
+<li>命令<code>git push origin --tags</code>可以推送全部未推送过的本地标签；</li>
+<li>命令<code>git tag -d &lt;tagname&gt;</code>可以删除一个本地标签；</li>
+<li>命令<code>git push origin :refs/tags/&lt;tagname&gt;</code>可以删除一个远程标签。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Git/" class="category-chain-item">Git</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git/">#git</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Git学习</div>
+      <div>http://example.com/2023/04/25/Git学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dayang_Shu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/05/06/c%E8%AF%AD%E8%A8%80%E4%B8%ADscanf-%E5%92%8Cprintf-%E7%BB%86%E8%8A%82/" title="c语言中scanf()和printf()细节">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">c语言中scanf()和printf()细节</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/04/19/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" title="动态规划">
+                        <span class="hidden-mobile">动态规划</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"31iZyE7W4HMHkS6NqSCM2uMi-gzGzoHsz","appKey":"GRuHh4ifTQM7sMto8yAyIvzw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

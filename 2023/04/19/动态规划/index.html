@@ -1,0 +1,776 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Dayang_Shu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="acwing算法基础课动态规划章节例题模板解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划">
+<meta property="og:url" content="http://example.com/2023/04/19/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/index.html">
+<meta property="og:site_name" content="大洋">
+<meta property="og:description" content="acwing算法基础课动态规划章节例题模板解析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/_posts_imge/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/acwing.jpg">
+<meta property="article:published_time" content="2023-04-19T15:37:02.000Z">
+<meta property="article:modified_time" content="2023-05-06T15:38:37.334Z">
+<meta property="article:author" content="Dayang_Shu">
+<meta property="article:tag" content="acwing">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/_posts_imge/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/acwing.jpg">
+  
+  
+  
+  <title>动态规划 - 大洋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"31iZyE7W4HMHkS6NqSCM2uMi-gzGzoHsz","app_key":"GRuHh4ifTQM7sMto8yAyIvzw","server_url":"https://31izye7w.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>大洋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/theme_imge/%E6%97%A5%E6%9C%AC.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="动态规划"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-04-19 23:37" pubdate>
+          2023年4月19日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">动态规划</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>acwing算法基础课动态规划章节例题模板解析</p>
+<span id="more"></span>
+
+<h1 id="动态规划-DP"><a href="#动态规划-DP" class="headerlink" title="动态规划(DP)"></a>动态规划(DP)</h1><h2 id="1-背包问题"><a href="#1-背包问题" class="headerlink" title="1.背包问题"></a>1.背包问题</h2><h3 id="1-1-01背包"><a href="#1-1-01背包" class="headerlink" title="1.1 01背包"></a>1.1 01背包</h3><p>朴素算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">1010</span>;<br>        <span class="hljs-type">int</span> n;<span class="hljs-comment">//输入物品数量</span><br>        <span class="hljs-type">int</span> m;<span class="hljs-comment">//输入背包承重</span><br>        <span class="hljs-type">int</span>[] v=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<span class="hljs-comment">//存储物品重量</span><br>        <span class="hljs-type">int</span>[] w=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<span class="hljs-comment">//存储物品价值(权重)</span><br>        <span class="hljs-type">int</span>[][] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br>        <br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        n=sc.nextInt();<br>        m=sc.nextInt();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            v[i]=sc.nextInt();<br>            w[i]=sc.nextInt();<br>            <br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=m;j++)&#123;<br>                f[i][j]=f[i-<span class="hljs-number">1</span>][j];<span class="hljs-comment">//左边情况一定存在</span><br>                <span class="hljs-keyword">if</span>(j&gt;=v[i]) f[i][j]=Math.max(f[i][j],f[i-<span class="hljs-number">1</span>][j-v[i]]+w[i]);<span class="hljs-comment">//考虑右边是否有i的情况   </span><br>                <br>            &#125;<br>            <br>        &#125;<br>        System.out.println(f[n][m]);<br>           <br>    &#125;<br>    <br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>优化空间算法</p>
+<figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs prolog">import java.util.*;<br>public class <span class="hljs-symbol">Main</span>&#123;<br>    public static void main(<span class="hljs-symbol">String</span> []args)&#123;<br>        int <span class="hljs-symbol">N</span>=<span class="hljs-number">1010</span>;<br>        int[] v=new int[<span class="hljs-symbol">N</span>];<br>        int[] w=new int[<span class="hljs-symbol">N</span>];<br>        int[] f=new int[<span class="hljs-symbol">N</span>];<br>        <span class="hljs-symbol">Scanner</span> sc=new <span class="hljs-symbol">Scanner</span>(<span class="hljs-symbol">System</span>.in);<br>        int n=sc.nextInt();<br>        int m=sc.nextInt();<br>        for(int i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            v[i]=sc.nextInt();<br>            w[i]=sc.nextInt();<br>            <br>        &#125;<br>        for(int i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            for(int j=m;j&gt;=v[i];j--)&#123;<br>                f[j]=<span class="hljs-symbol">Math</span>.max(f[j],f[j-v[i]]+w[i]);<br>            &#125;<br>        &#125;<br>        //因为左边的j是由右边的j更新过来的，所以替换成一维还是用的上一层i<span class="hljs-number">-1</span>的j<br>                //f[j] = f[j]; // 左边不包含i的方案<br>                //f[i][j] = f[i<span class="hljs-number">-1</span>][j]; <br>                if(j &gt;= v[i])&#123; <br>                    //因为我们的f[i][j]是由f[i - <span class="hljs-number">1</span>][j]更新过来的，替换成一维之后，需要保证f[j]是由(i - <span class="hljs-number">1</span>)层的f[j -                          v[i]]更新的<br>                    //又因为(j - v[i]) 严格小于j的，所以f[j - v[i]]肯定是在f[j]之前被求出，我们如果是从小到大枚举的j的话<br>                    //如果有可能枚举到(j - v[i])是在我们当前 i 层中求出过，那就表示是这一层的值，我们要的是上一层的值<br>                    //f[<span class="hljs-number">2</span>] = f[<span class="hljs-number">2</span> - <span class="hljs-number">2</span>] = f[<span class="hljs-number">0</span>]<br>                    //f[<span class="hljs-number">3</span>] = f[<span class="hljs-number">3</span> - <span class="hljs-number">2</span>] = f[<span class="hljs-number">1</span>]<br>                    //f[<span class="hljs-number">4</span>] = f[<span class="hljs-number">4</span> - <span class="hljs-number">2</span>] = f[<span class="hljs-number">2</span>],这时候的f[<span class="hljs-number">2</span>]在我们这一层中更新过，所以用的是我们这一层的值，我们要的是上一                       层的值<br><br>                    //所以我们需要一共逆序遍历j<br>                    //f[<span class="hljs-number">9</span>] = f[<span class="hljs-number">9</span> - <span class="hljs-number">3</span>]<br>                    //f[<span class="hljs-number">8</span>] = f[<span class="hljs-number">8</span> - <span class="hljs-number">3</span>]<br>                    //f[<span class="hljs-number">7</span>] = f[<span class="hljs-number">7</span> - <span class="hljs-number">3</span>]<br>                    //...<br>                    //f[<span class="hljs-number">3</span>] = f[<span class="hljs-number">3</span> - <span class="hljs-number">3</span>]，可以看出没有一个是重复出现的，所以这个时候用的就是上一层的值，《等价变形》<br>                    //f[j] = <span class="hljs-symbol">Math</span>.max(f[j] , f[j - v[i]] + w[i]);//右边包含i的方案，f[i<span class="hljs-number">-1</span>][j - v[i]] + w[i]<br>                    //f[i][j] = <span class="hljs-symbol">Math</span>.max(f[i][j],f[i - <span class="hljs-number">1</span>][j - v[i]] + w[i])<br><br>        <br>        <span class="hljs-symbol">System</span>.out.println(f[m]);<br>        <br>    &#125;<br>    <br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>1.2 完全背包问题</p>
+<p>对f[i,j]进行数量的划分</p>
+<p>最朴素做法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []args)</span>&#123;<br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">1010</span>;<br>        <span class="hljs-type">int</span>[] v=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] w=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <br>        <span class="hljs-type">int</span>[][] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br>        <br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <span class="hljs-type">int</span> m=sc.nextInt();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            v[i]=sc.nextInt();<br>            w[i]=sc.nextInt();<br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=m;j++)&#123;<br>                <br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k*v[i]&lt;=j;k++)&#123;<br>                    f[i][j]=Math.max(f[i][j],f[i-<span class="hljs-number">1</span>][j-k*v[i]]+k*w[i]);<br>                &#125;<br>                <br>            &#125;<br>            <br>            <br>            <br>        &#125;<br>        <br>        System.out.println(f[n][m]);<br>        <br>        <br>        <br>    &#125;<br>    <br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>朴素算法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []args)</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">1010</span>;<br>        <span class="hljs-type">int</span>[] v=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] w=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[][] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <span class="hljs-type">int</span> m=sc.nextInt();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            v[i]=sc.nextInt();<br>            w[i]=sc.nextInt();<br>            <br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=m;j++)&#123;<br>                f[i][j]=f[i-<span class="hljs-number">1</span>][j];<span class="hljs-comment">//不包含第i件物品的情况</span><br>                <span class="hljs-keyword">if</span>(j&gt;=v[i]) f[i][j]=Math.max(f[i-<span class="hljs-number">1</span>][j],f[i][j-v[i]]+w[i]);<br>                <br>                <br>            &#125;<br>            <br>        &#125;<br>        <br>        System.out.println(f[n][m]);<br>        <br>        <br>    &#125;<br>    <br>    <br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>空间优化代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scan</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">N</span> <span class="hljs-operator">=</span> <span class="hljs-number">1010</span>;<br>        <span class="hljs-type">int</span>[] v = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] w = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] f = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> scan.nextInt();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> scan.nextInt();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> ; i &lt;= n ; i ++ )&#123;<br>            v[i] = scan.nextInt();<br>            w[i] = scan.nextInt();<br>        &#125;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> ; i &lt;= n ; i ++ )&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> v[i] ; j &lt;= m ; j ++ )&#123;<span class="hljs-comment">//j-v[i]原因:我们求下一次时只需要f[i][j-v[i]]的值</span><br>                <span class="hljs-comment">// 划分的包含1-k个i的方案,因为可能不存在，所以需要判断一下，v[i]的大小是不是超过总容量j</span><br>                <span class="hljs-keyword">if</span> (j &gt;= v[i]) f[j] = Math.max(f[j] , f[j - v[i]] + w[i]);<br>            &#125;<br>        &#125;<br>        System.out.println(f[m]);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3多重背包问题"><a href="#1-3多重背包问题" class="headerlink" title="1.3多重背包问题"></a>1.3多重背包问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []args)</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">110</span>;<br>        <span class="hljs-type">int</span>[] v=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] w=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] s=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[][] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <span class="hljs-type">int</span> m=sc.nextInt();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            v[i]=sc.nextInt();<br>            w[i]=sc.nextInt();<br>            s[i]=sc.nextInt();<br>            <br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">0</span>;j&lt;=m;j++)&#123;<br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k*v[i]&lt;=j&amp;&amp;k&lt;=s[i];k++)&#123;<br>                    f[i][j]=Math.max(f[i][j],f[i-<span class="hljs-number">1</span>][j-k*v[i]]+k*w[i]);<br>                &#125;<br>            &#125;<br>        &#125;<br>        System.out.println(f[n][m]);<br>    &#125;<br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>二进制优化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []ags)</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">12010</span>;<br>        <span class="hljs-type">int</span> M=<span class="hljs-number">2010</span>;<br>        <span class="hljs-type">int</span>[]v=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[]w=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[M];<br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;<br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <span class="hljs-type">int</span> m=sc.nextInt();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-type">int</span> a=sc.nextInt();<br>            <span class="hljs-type">int</span> b=sc.nextInt();<br>            <span class="hljs-type">int</span> s=sc.nextInt();<br>            <span class="hljs-type">int</span> k=<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span>(k&lt;=s)&#123;<br>                cnt++;<br>                v[cnt]=k*a;<br>                w[cnt]=k*b;<br>                s-=k;<br>                k=k*<span class="hljs-number">2</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(s&gt;<span class="hljs-number">0</span>)&#123;<br>                cnt++;<br>                v[cnt]=s*a;<br>                w[cnt]=s*b;<br>            &#125;<br>            <br>            <br>            <br>        &#125;<br>        n=cnt;<span class="hljs-comment">//转化成0-1背包问题;</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=m;j&gt;=v[i];j--)&#123;<br>                f[j]=Math.max(f[j],f[j-v[i]]+w[i]);<br>                <br>            &#125;<br>        &#125;<br>        <br>        System.out.println(f[m]);<br>        <br>    &#125;<br>    <br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-4分组背包问题"><a href="#1-4分组背包问题" class="headerlink" title="1.4分组背包问题"></a>1.4分组背包问题</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-built_in">public</span> <span class="hljs-keyword">class</span> Main&#123;<br>    <span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> main(String []args)&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">1010</span>;<br>        <span class="hljs-type">int</span>[][] v=<span class="hljs-built_in">new</span> <span class="hljs-type">int</span>[N][N];<br>        <span class="hljs-type">int</span>[][] w=<span class="hljs-built_in">new</span> <span class="hljs-type">int</span>[N][N];<br>        <span class="hljs-type">int</span>[] s=<span class="hljs-built_in">new</span> <span class="hljs-type">int</span>[N];<br>        <span class="hljs-type">int</span>[] f=<span class="hljs-built_in">new</span> <span class="hljs-type">int</span>[N];<br>        Scanner sc=<span class="hljs-built_in">new</span> Scanner(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">in</span>);<br>        <br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <span class="hljs-type">int</span> m=sc.nextInt();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            s[i]=sc.nextInt();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=s[i];j++)&#123;<br>                v[i][j]=sc.nextInt();<br>                w[i][j]=sc.nextInt();<br>                <br>            &#125;<br>            <br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;//转化为<span class="hljs-number">0</span><span class="hljs-number">-1</span>背包问题<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=m;j&gt;=<span class="hljs-number">0</span>;j<span class="hljs-comment">--)&#123;</span><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k&lt;=s[i];k++)&#123;<br>                    <span class="hljs-keyword">if</span>(j&gt;=v[i][k]) f[j]=Math.max(f[j],f[j-v[i][k]]+w[i][k]);<br>                &#125;<br>            &#125;<br>            <br>        &#125;<br>        <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(f[m]);<br>        <br>    &#125;<br>    <br>    <br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-线性DP"><a href="#2-线性DP" class="headerlink" title="2.线性DP"></a>2.线性DP</h2><h3 id="2-1数字三角形"><a href="#2-1数字三角形" class="headerlink" title="2.1数字三角形"></a>2.1数字三角形</h3><p>采用从下到上遍历的方法不用考虑边界问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []args)</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">510</span>;<br>        <span class="hljs-type">int</span>[][] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br>        <br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=i;j++)&#123;<br>                f[i][j]=sc.nextInt();<br>                <br>            &#125;<br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n-<span class="hljs-number">1</span>;i&gt;=<span class="hljs-number">1</span>;i--)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=i;j++)&#123;<br>                <br>                f[i][j]=Math.max(f[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>],f[i+<span class="hljs-number">1</span>][j])+f[i][j];<br>            &#125;<br>        &#125;<br>        <br>        System.out.println(f[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2最长上升子序列"><a href="#2-2最长上升子序列" class="headerlink" title="2.2最长上升子序列"></a>2.2最长上升子序列</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []args)</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">1010</span>;<br>        <span class="hljs-type">int</span>[] a=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<span class="hljs-comment">//状态方程表示前i个以i结尾的上升子序列,值为最大值;</span><br>        <br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            a[i]=sc.nextInt();<br>            <br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            f[i]=<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=i-<span class="hljs-number">1</span>;j++)&#123;<br>                <br>                <span class="hljs-keyword">if</span>(a[i]&gt;a[j])&#123;<br>                    f[i]=Math.max(f[i],f[j]+<span class="hljs-number">1</span>);<br>                &#125;<br>            &#125;<br>            <br>        &#125;<br>        <br>        <span class="hljs-type">int</span> res=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            res=Math.max(res,f[i]);<br>        &#125;<br>        System.out.println(res);<br>        <br>        <br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-3最长公共子序列"><a href="#2-3最长公共子序列" class="headerlink" title="2.3最长公共子序列"></a>2.3最长公共子序列</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String []args)</span>&#123;<br>        <span class="hljs-type">int</span> N=<span class="hljs-number">1010</span>;<br>        <span class="hljs-type">char</span>[] a=<span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[N];<br>        <span class="hljs-type">char</span>[] b=<span class="hljs-keyword">new</span> <span class="hljs-title class_">char</span>[N];<br>        <br>        <span class="hljs-type">int</span>[][] f=<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br>        Scanner sc=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <br>        <span class="hljs-type">int</span> n=sc.nextInt();<br>        <span class="hljs-type">int</span> m=sc.nextInt();<br>        <br>        String A=sc.next();<br>        String B=sc.next();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            a[i]=A.charAt(i-<span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)&#123;<br>            b[j]=B.charAt(j-<span class="hljs-number">1</span>);<br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=m;j++)&#123;<br>                f[i][j]=Math.max(f[i-<span class="hljs-number">1</span>][j],f[i][j-<span class="hljs-number">1</span>]);<br>                <span class="hljs-keyword">if</span>(a[i]==b[j]) f[i][j]=Math.max(f[i-<span class="hljs-number">1</span>][j-<span class="hljs-number">1</span>]+<span class="hljs-number">1</span>,f[i][j]);<br>                <br>                <br>            &#125;<br>        &#125;<br>        System.out.println(f[n][m]);<br>        <br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-4石子合并问题"><a href="#2-4石子合并问题" class="headerlink" title="2.4石子合并问题"></a>2.4石子合并问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.*;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">Scanner</span> <span class="hljs-variable">scan</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">N</span> <span class="hljs-operator">=</span> <span class="hljs-number">310</span>;<br>        <span class="hljs-type">int</span>[] s = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N];<br>        <span class="hljs-type">int</span>[][] f = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[N][N];<br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> scan.nextInt();<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> ; i &lt;= n ; i ++ ) s[i] = scan.nextInt();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> ; i &lt;= n ; i ++ ) s[i] += s[i - <span class="hljs-number">1</span>]; <span class="hljs-comment">// 前缀和</span><br>        <span class="hljs-comment">//这里是枚举的每种长度,比如n等于4,比如长度3，右边下标不超过n，求f[1-3]和f[2-4]里面的最小值</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span>  <span class="hljs-number">2</span> ; len &lt;= n ; len ++ )&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i + len - <span class="hljs-number">1</span> &lt;= n ; i ++ )&#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i + len -  <span class="hljs-number">1</span>; <span class="hljs-comment">// 每种长度的j</span><br>                <span class="hljs-comment">//因为要枚举的是k里面的最小值，所以赋一个很大的数，</span><br>                <span class="hljs-comment">//如果没有赋最大的数，你的f[i][j] 初始值是0，所以最小是永远会被是0，最后输出也会是0  </span><br>                f[i][j] = (<span class="hljs-type">int</span>)<span class="hljs-number">1e9</span>; <br>                <span class="hljs-comment">//这里k是从i开始到j-1结束</span><br>                <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> i ; k &lt; j ; k ++ )&#123;<br>                    f[i][j] = Math.min(f[i][j],f[i][k] + f[k + <span class="hljs-number">1</span>][j] + (s[j] - s[i - <span class="hljs-number">1</span>]));<br>                &#125;<br>            &#125;<br>        &#125;<br>        System.out.println(f[<span class="hljs-number">1</span>][n]);<br>    &#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-5-计数问题"><a href="#2-5-计数问题" class="headerlink" title="2.5 计数问题"></a>2.5 计数问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span><br>&#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-type">Scanner</span> <span class="hljs-variable">in</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span><br>    &#123;<br>        <span class="hljs-keyword">while</span> (in.hasNext())<br>        &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> in.nextInt();<br>            <span class="hljs-type">int</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> in.nextInt();<br><br>            <span class="hljs-keyword">if</span> (a == b &amp;&amp; b == <span class="hljs-number">0</span>)<br>                <span class="hljs-keyword">break</span>;<br><br>            <span class="hljs-keyword">if</span> (a &gt; b)<br>            &#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> a;<br>                a = b;<br>                b = temp;<br>            &#125;<br><br>            <span class="hljs-comment">// 和前缀和类似</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">9</span>; i++)<br>                System.out.print(count(b, i) - count(a - <span class="hljs-number">1</span>, i) + <span class="hljs-string">&quot; &quot;</span>);<br>            System.out.println();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">count</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span> x)</span><br>    &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i/<span class="hljs-number">10</span> &lt;= n; i *= <span class="hljs-number">10</span>)<br>        &#123;<br>            <span class="hljs-comment">// l当前位左边的数,m当前位的数,r当前位右边的数</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> n / i / <span class="hljs-number">10</span>, m = n / i % <span class="hljs-number">10</span>, r = n % i;<br><br>            <span class="hljs-comment">// ① 第一种情况</span><br>            <span class="hljs-comment">// 000~l-1 = l</span><br>            <span class="hljs-keyword">if</span> (x != <span class="hljs-number">0</span>) sum += l * i;<br>            <span class="hljs-comment">// 如果查找的是0,则此位左边不能全为0,否则 000[0]673 相当于673 不存在0</span><br>            <span class="hljs-comment">// 所以是001~l-1 = l-1</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span> &amp;&amp; l &gt; <span class="hljs-number">0</span>)<br>                sum += (l - <span class="hljs-number">1</span>) * i;<br><br>            <span class="hljs-comment">// ② 第二种情况</span><br>            <span class="hljs-comment">// 如果查找的数是0且当前位左边没有数字 则不可取,否则 [0]685 相当于673 不存在0</span><br>            <span class="hljs-comment">// 如果查找的数小于当前位数 则可取0~9..也就是i个</span><br>            <span class="hljs-keyword">if</span> (x &lt; m &amp;&amp; (x != <span class="hljs-number">0</span> || l != <span class="hljs-number">0</span>))<br>                sum += i;<br>            <span class="hljs-comment">// 如果查找的数等于当前位数 则可以取当前位数右边的所有数字 r+1个</span><br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (x == m &amp;&amp; (x != <span class="hljs-number">0</span> || l != <span class="hljs-number">0</span>))<br>                sum += r + <span class="hljs-number">1</span>;<br>            <span class="hljs-comment">// 如果查找的数大于当前位数 则不可取</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> sum;<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/acwing/" class="category-chain-item">acwing</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/acwing/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E8%AF%BE/" class="category-chain-item">算法基础课</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/acwing/">#acwing</a>
+      
+        <a href="/tags/dp/">#dp</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>动态规划</div>
+      <div>http://example.com/2023/04/19/动态规划/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Dayang_Shu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年4月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/04/25/Git%E5%AD%A6%E4%B9%A0/" title="Git学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Git学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"31iZyE7W4HMHkS6NqSCM2uMi-gzGzoHsz","appKey":"GRuHh4ifTQM7sMto8yAyIvzw","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
